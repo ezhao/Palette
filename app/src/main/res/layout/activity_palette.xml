@@ -11,9 +11,32 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
+    <Button
+        android:id="@+id/btnLaunchCamera"
+        android:text="Launch Camera"
+        android:layout_toRightOf="@id/btnLaunchGallery"
+        android:layout_toEndOf="@id/btnLaunchGallery"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/btnVibrantSwatch"
+        android:layout_below="@id/btnLaunchGallery"
+        android:layout_width="50dp"
+        android:layout_height="50dp" />
+
+    <Button
+        android:id="@+id/btnDarkVibrantSwatch"
+        android:layout_alignTop="@id/btnVibrantSwatch"
+        android:layout_toRightOf="@id/btnVibrantSwatch"
+        android:layout_width="50dp"
+        android:layout_height="50dp" />
+
     <ImageView
         android:id="@+id/ivPreview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
+
+
 
 </RelativeLayout>
