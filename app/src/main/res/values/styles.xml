@@ -5,4 +5,12 @@
         <!-- Customize your theme here. -->
     </style>
 
+    <style name="SwatchButton">
+        <item name="android:layout_width">50dp</item>
+        <item name="android:layout_height">50dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_margin">8dp</item>
+        <item name="android:background">#FFFFFF</item>
+    </style>
+
 </resources>

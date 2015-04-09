@@ -29,6 +29,10 @@ public class PaletteActivity extends ActionBarActivity {
     @InjectView(R.id.ivPreview) ImageView ivPreview;
     @InjectView(R.id.btnVibrantSwatch) Button btnVibrantSwatch;
     @InjectView(R.id.btnDarkVibrantSwatch) Button btnDarkVibrantSwatch;
+    @InjectView(R.id.btnLightVibrantSwatch) Button btnLightVibrantSwatch;
+    @InjectView(R.id.btnMutedSwatch) Button btnMutedSwatch;
+    @InjectView(R.id.btnDarkMutedSwatch) Button btnDarkMutedSwatch;
+    @InjectView(R.id.btnLightMutedSwatch) Button btnLightMutedSwatch;
 
     public final static int PICK_PHOTO_CODE = 1046;
     public final static int CAPTURE_IMAGE_CODE = 1034;
@@ -41,21 +45,6 @@ public class PaletteActivity extends ActionBarActivity {
         setContentView(R.layout.activity_palette);
 
         ButterKnife.inject(this);
-    }
-
-    @OnClick(R.id.btnLaunchGallery)
-    public void onPickPhoto(View view) {
-        // Create intent for picking a photo from the gallery
-        Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-        startActivityForResult(intent, PICK_PHOTO_CODE);
-    }
-
-    @OnClick(R.id.btnLaunchCamera)
-    public void onPickCamera(View view) {
-        // Create Intent to take a picture and save in temp space
-        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        intent.putExtra(MediaStore.EXTRA_OUTPUT, getPhotoUri());
-        startActivityForResult(intent, CAPTURE_IMAGE_CODE);
     }
 
     @Override
@@ -96,7 +85,18 @@ public class PaletteActivity extends ActionBarActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.itmCamera) {
+            // Create Intent to take a picture and save in temp space
+            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+            intent.putExtra(MediaStore.EXTRA_OUTPUT, getPhotoUri());
+            startActivityForResult(intent, CAPTURE_IMAGE_CODE);
+            return true;
+        }
+
+        if (id == R.id.itmGallery) {
+            // Create intent for picking a photo from the gallery
+            Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+            startActivityForResult(intent, PICK_PHOTO_CODE);
             return true;
         }
 
@@ -130,6 +130,26 @@ public class PaletteActivity extends ActionBarActivity {
                 Palette.Swatch darkVibrant = palette.getDarkVibrantSwatch();
                 if (darkVibrant != null) {
                     btnDarkVibrantSwatch.setBackgroundColor(darkVibrant.getRgb());
+                }
+
+                Palette.Swatch lightVibrant = palette.getLightVibrantSwatch();
+                if (lightVibrant != null) {
+                    btnLightVibrantSwatch.setBackgroundColor(lightVibrant.getRgb());
+                }
+
+                Palette.Swatch muted = palette.getMutedSwatch();
+                if (muted != null) {
+                    btnMutedSwatch.setBackgroundColor(muted.getRgb());
+                }
+
+                Palette.Swatch darkMuted = palette.getDarkMutedSwatch();
+                if (darkMuted != null) {
+                    btnDarkMutedSwatch.setBackgroundColor(darkMuted.getRgb());
+                }
+
+                Palette.Swatch lightMuted = palette.getLightMutedSwatch();
+                if (lightMuted != null) {
+                    btnLightMutedSwatch.setBackgroundColor(lightMuted.getRgb());
                 }
             }
         });
